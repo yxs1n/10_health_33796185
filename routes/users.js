@@ -58,7 +58,7 @@ router.post('/registered', [check('username').notEmpty().withMessage('Username i
                         message: 'Registration successful. You can now log in.'
                     };
                     // Redirect to login page
-                    res.redirect('users/login');
+                    res.redirect('/login');
                 }
             });
         });

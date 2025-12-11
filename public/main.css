@@ -1,6 +1,7 @@
 body {
     background-color: #5f5f5f;
     color: white;
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 /*  ==============
@@ -53,6 +54,39 @@ body {
     background-color: #a2003e;
     border-radius: 5px;
     color: black;
+}
+
+/*  ==========================
+    Home Page Styling
+    ========================== */
+.home-container {
+    width: 90%;
+    max-width: 700px;
+    margin: 40px auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.subtitle {
+    color: #a2003e;
+    margin-top: -10px;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 20px;
+    background-color: #a2003e;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #7a0030;
 }
 
 /*  ==========================

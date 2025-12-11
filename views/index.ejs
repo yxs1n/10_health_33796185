@@ -1,14 +1,59 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title><%=appData.appName%></title>
-        <link rel="stylesheet" href="/main.css">
-    </head>
-    <body>
-        <%- include ('partials/navbar.ejs') %>
-        <%- include('partials/flash.ejs') %>
+<head>
+    <title>Home - <%= appData.appName %></title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <%- include('partials/flash.ejs') %>
 
-        <h1>Welcome to <%=appData.appName%></h1>
+    <div class="home-container">
+        <h1>Welcome to <%= appData.appName %></h1>
+        <p class="subtitle">Your personal fitness tracking companion.</p>
 
-    </body>
+        <% if (!user) { %>
+            <div class="home-buttons">
+                <a href="/users/login" class="btn">Login</a>
+                <a href="/users/register" class="btn">Get Started</a>
+            </div>
+        <% } else { %>
+            <h2>Hello, <%= user.firstName %>!</h2>
+
+            <div class="home-buttons">
+                <a href="/workouts" class="btn">View Workouts</a>
+                <a href="/workouts/add" class="btn">Add Workout</a>
+                <a href="/workouts/search" class="btn">Search Workouts</a>
+            </div>
+            <h3>Your Most Recent Workout</h3>
+            <% if (workouts.length === 0) { %>
+                <p>No workouts logged yet. Start by adding a new workout!</p>
+            <% } else { %>
+                <table class="workouts-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Duration (mins)</th>
+                            <th>Calories Burned</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% workouts.forEach(function(workout) { %>
+                            <tr>
+                                <td><%= workout.date.toDateString() %></td>
+                                <td><%= workout.type %></td>
+                                <td><%= workout.duration %></td>
+                                <td><%= workout.calories %></td>
+                                <td><%= workout.notes %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            <% } %>
+        <% } %>
+        
+    </div>
+</body>
 </html>

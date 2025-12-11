@@ -23,10 +23,11 @@ router.get('/', requireLogin, (req, res, next) => {
     });
 });
 
+// Add Workout Route
 router.get('/add', requireLogin, (req, res, next) => {
     res.render('add_workout.ejs');
 });
-
+// Handle Add Workout Form Submission
 router.post('/workoutAdded', requireLogin, [
     check('date').isISO8601().withMessage('Please enter a valid date.'),
     check('type').notEmpty().withMessage('Workout type is required.'),
@@ -65,4 +66,9 @@ router.post('/workoutAdded', requireLogin, [
         });
     }
 });
+
+router.get('/search', requireLogin, (req, res, next) => {
+    res.render('search_workouts.ejs');
+});
+
 module.exports = router;

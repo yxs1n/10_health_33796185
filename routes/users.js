@@ -19,7 +19,7 @@ function requireLogin(req, res, next) {
       type: 'error',
       message: 'You must be logged in to access that page.'
     };
-    return res.redirect('login');
+    return res.redirect('./login');
   }
   next();
 }
@@ -49,7 +49,7 @@ router.post('/registered', [check('username').notEmpty().withMessage('Username i
                         type: 'error',
                         message: 'Error during registration. Please try again.'
                     };
-                    res.redirect('register');
+                    res.redirect('./register');
                 } else {
                     console.log('User registered: ' + req.body.username);
                     // Confirmation message
@@ -58,7 +58,7 @@ router.post('/registered', [check('username').notEmpty().withMessage('Username i
                         message: 'Registration successful. You can now log in.'
                     };
                     // Redirect to login page
-                    res.redirect('login');
+                    res.redirect('./login');
                 }
             });
         });
@@ -84,7 +84,7 @@ router.post('/loggedin', function(req, res, next) {
                 type: 'error',
                 message: 'No such user found.'
             };
-            res.redirect('login');
+            res.redirect('./login');
         } else {
             const hashedPassword = results[0].hashedPassword;
             bcrypt.compare(req.body.password, hashedPassword, function(err, passwordMatch) {
@@ -105,14 +105,14 @@ router.post('/loggedin', function(req, res, next) {
                         message: 'You have logged in successfully.'
                     };
                     // Go back to home page
-                    res.redirect('/');
+                    res.redirect('./');
                 } else {
                     // Passwords don't match
                     req.session.flash = {
                         type: 'error',
                         message: 'Incorrect password.'
                     };
-                    res.redirect('login');
+                    res.redirect('./login');
                 }
             });
         }

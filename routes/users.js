@@ -105,7 +105,7 @@ router.post('/loggedin', function(req, res, next) {
                         message: 'You have logged in successfully.'
                     };
                     // Go back to home page
-                    res.redirect('./');
+                    res.redirect('../');
                 } else {
                     // Passwords don't match
                     req.session.flash = {
@@ -128,7 +128,7 @@ router.get('/logout', (req, res) => {
             message: 'You have been logged out successfully.'
         };
 
-    res.redirect('/');
+    res.redirect('../');
 });
 
 module.exports = router;
